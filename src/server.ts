@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import path from 'path';
 import helmet from 'helmet';
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction, response } from 'express';
 import logger from 'jet-logger';
 
 import 'express-async-errors';
@@ -19,6 +19,11 @@ import HttpStatusCodes from '@src/constants/HttpStatusCodes';
 
 import { NodeEnvs } from '@src/constants/misc';
 import { RouteError } from '@src/other/classes';
+import pool from './db';
+
+pool.query('SELECT * FROM test').then(response => {
+    console.log(response.rows)
+})
 // **** Variables **** //
 
 const app = express();
